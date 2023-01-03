@@ -36,4 +36,8 @@ For detailed information, refer to the [**subject of this project**](https://git
 
  ## 🛠️ Usage
  
+ ## Resources
+ 
+ [Docker-curriculum](https://docker-curriculum.com/)
+ 
  

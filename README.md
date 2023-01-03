@@ -32,7 +32,7 @@ For detailed information, refer to the [**subject of this project**](https://git
 
 ## Arquitecture 
 
-[System arquitecture](https://github.com/iker-gonzalez/inception/blob/main/inception_arquitecture.png)
+![System arquitecture](https://github.com/iker-gonzalez/inception/blob/main/inception_arquitecture.png)
 
  ## 🛠️ Usage
  

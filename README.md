@@ -30,6 +30,10 @@
 For detailed information, refer to the [**subject of this project**](https://github.com/iker-gonzalez/42_cursus/blob/main/_PDFs/en.subject_inception.pdf)
 
 
+## Arquitecture 
+
+[
+
  ## 🛠️ Usage
  
  

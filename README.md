@@ -25,7 +25,7 @@
 
 ## 🗣️ About
 
-> This project aims to broaden your knowledge of system administration by using <strong>Docker</strong>. Several Docker images are virtualized, creating them in a new personal virtual machine. The three services to implement are: NGINX, Wordpress and MariaDB, each with its own Dockerfile, running in a dedicated container and called from a docker-compose.yml.
+> On this project several <strong>Docker</strong> images are virtualized, creating them in a new personal virtual machine. The three services to implement are: NGINX, Wordpress and MariaDB, each with its own Dockerfile, running in a dedicated container and called from a docker-compose.yml.
 
 For detailed information, refer to the [**subject of this project**](https://github.com/iker-gonzalez/42_cursus/blob/main/_PDFs/en.subject_inception.pdf)
 

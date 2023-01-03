@@ -30,13 +30,13 @@
 For detailed information, refer to the [**subject of this project**](https://github.com/iker-gonzalez/42_cursus/blob/main/_PDFs/en.subject_inception.pdf)
 
 
-## Arquitecture 
+## 🏗 Arquitecture 
 
 ![System arquitecture](https://github.com/iker-gonzalez/inception/blob/main/inception_arquitecture.png)
 
  ## 🛠️ Usage
  
- ## Resources
+ ## 🔗 Resources
  
  [Docker-curriculum](https://docker-curriculum.com/)
  

@@ -10,8 +10,8 @@ services:
     ports:
       - "3306:3306"
     env_file:
-      - .env  # Specify the path to your .env file
-
+      - .env  
+      
   wordpress:
     image: wordpress
     environment:

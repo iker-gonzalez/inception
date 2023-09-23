@@ -14,7 +14,7 @@ services:
     env_file:
       - .env
     volumes:
-      - mariadb-data:/var/lib/mysql
+      - mariadb-data:/home/login/data
     networks:
       - app-network
 
@@ -31,7 +31,7 @@ services:
     depends_on:
       - mariadb
     volumes:
-      - wordpress-data:/var/www/html
+      - wordpress-data:/home/login/data
     networks:
       - app-network
 
@@ -44,6 +44,10 @@ services:
       - wordpress
     networks:
       - app-network
+
+volumes:
+  mariadb-data:
+  wordpress-data:
 
 networks:
   app-network:

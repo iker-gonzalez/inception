@@ -8,4 +8,4 @@ RUN apt-get update && apt-get install -y mariadb-server
 EXPOSE 3306
 
 # Start MariaDB when the container is run
-CMD ["mysqld"]
+CMD ["/usr/sbin/mysqld"]

@@ -1,9 +1,9 @@
 # Use the 'debian:buster' base image
 FROM debian:buster
 
-# Install PHP-FPM and required PHP extensions
+# Install PHP, PHP-FPM, required PHP extensions, and php-mysql
 RUN apt-get update && \
-    apt-get install -y php-fpm
+    apt-get install -y php php-fpm php-mysql wget unzip 
 
 # Create the target directory
 RUN mkdir -p /var/www

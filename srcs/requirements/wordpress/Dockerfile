@@ -3,7 +3,7 @@ FROM debian:buster
 
 # Install PHP, PHP-FPM, required PHP extensions, and php-mysql
 RUN apt-get update && \
-    apt-get install -y php php-fpm php-mysql wget unzip 
+	apt-get install -y php php-mysql wget unzip php7.3-fpm
 
 # Create the target directory
 RUN mkdir -p /var/www
@@ -17,4 +17,4 @@ RUN wget -O /tmp/wordpress.tar.gz https://wordpress.org/latest.tar.gz && \
 EXPOSE 9000
 
 # Start PHP-FPM
-CMD ["php-fpm", "--nodaemonize"]
+CMD ["/usr/sbin/php-fpm7.3", "--nodaemonize"]

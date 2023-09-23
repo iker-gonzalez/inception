@@ -1,4 +1,5 @@
 version: '3'
+
 services:
   mariadb:
     container_name: mariadb
@@ -9,9 +10,13 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - "3306" #only expose within the Docker network. Not mapping to host machine port
+      - "3306" # only expose within the Docker network. Not mapping to host machine port
     env_file:
-      - .env  
+      - .env
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    networks:
+      - my-network
 
   wordpress:
     container_name: wordpress
@@ -22,14 +27,23 @@ services:
       WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
       WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
     ports:
-      - "8080" #only expose within the Docker network. Not mapping to host machine port
+      - "8080" # only expose within the Docker network. Not mapping to host machine port
     depends_on:
       - mariadb
+    volumes:
+      - wordpress-data:/var/www/html
+    networks:
+      - my-network
 
   nginx:
     container_name: nginx
     build: ./requirements/nginx
     ports:
-      - "443:443" #it is the only port exposed to the internet as it is mapped with port 443 of the host machine
+      - "443:443" # it is the only port exposed to the internet as it is mapped with port 443 of the host machine
     depends_on:
       - wordpress
+    networks:
+      - my-network
+
+networks:
+  my-network:

@@ -1,27 +1,17 @@
 # Use the 'debian:buster' base image
 FROM debian:buster
 
-# Install PHP and required extensions, as well as other necessary packages
+# Install PHP-FPM and required PHP extensions
 RUN apt-get update && \
-    apt-get install -y php php-mysql wget unzip nginx supervisor
+    apt-get install -y php-fpm php-mysql wget unzip
 
-# Download and extract WordPress
+# Install WordPress
 RUN wget -O /tmp/wordpress.tar.gz https://wordpress.org/latest.tar.gz && \
     tar -xzvf /tmp/wordpress.tar.gz -C /var/www/ && \
     rm /tmp/wordpress.tar.gz
 
-# Configure Nginx and PHP-FPM
-COPY wordpress.conf /etc/nginx/sites-available/default
-COPY php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
+# Expose port 9000 for PHP-FPM
+EXPOSE 9000
 
-# Create a directory for storing WordPress uploads
-RUN mkdir /var/www/wordpress/wp-content/uploads
-
-# Set permissions for WordPress files
-RUN chown -R www-data:www-data /var/www/wordpress
-
-# Expose port 80 for HTTP traffic
-EXPOSE 80
-
-# Start Nginx and PHP-FPM using Supervisor
-CMD ["/usr/bin/supervisord", "-n"]
+# Start PHP-FPM
+CMD ["php-fpm"]

@@ -16,7 +16,7 @@ services:
     volumes:
       - mariadb-data:/var/lib/mysql
     networks:
-      - my-network
+      - app-network
 
   wordpress:
     container_name: wordpress
@@ -33,7 +33,7 @@ services:
     volumes:
       - wordpress-data:/var/www/html
     networks:
-      - my-network
+      - app-network
 
   nginx:
     container_name: nginx
@@ -43,7 +43,7 @@ services:
     depends_on:
       - wordpress
     networks:
-      - my-network
+      - app-network
 
 networks:
-  my-network:
+  app-network:

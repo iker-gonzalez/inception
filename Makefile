@@ -18,4 +18,4 @@ clean:
 clean-images:
 	@docker rmi -f $$(docker images -qa);\
 
-.PHONY: all re down clean clean-images
+.PHONY: build all re down clean clean-images

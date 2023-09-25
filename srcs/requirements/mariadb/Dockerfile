@@ -7,6 +7,12 @@ RUN apt-get update && apt-get install -y mariadb-server
 # Copy initialization script
 COPY /tools/init_db.sh /docker-entrypoint-initdb.d/
 
+#env variables
+ENV MYSQL_ROOT_PASSWORD=mysecretpassword
+ENV MYSQL_DATABASE=mydatabase
+ENV MYSQL_USER=myuser
+ENV MYSQL_PASSWORD=mypassword
+
 # Run initialization script on startup
 ENTRYPOINT ["/docker-entrypoint-initdb.d/init_db.sh"]
 

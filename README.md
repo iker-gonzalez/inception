@@ -35,6 +35,7 @@ For detailed information, refer to the [**subject of this project**](https://git
 ![System arquitecture](https://github.com/iker-gonzalez/inception/blob/main/inception_arquitecture.png)
 
  ## 🛠️ Usage
+ Use make all in the root directory to deploy the microservices and to set up ports.
  
  ## 🔗 Resources
  

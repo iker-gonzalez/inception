@@ -5,16 +5,17 @@ services:
     container_name: mariadb
     build: ./requirements/mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ADMIN_USER: ${MYSQL_ADMIN_USER}
+      MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
+      MYSQL_STANDARD_USER: ${MYSQL_STANDARD_USER}
+      MYSQL_STANDARD_PASSWORD: ${MYSQL_STANDARD_PASSWORD}
     ports:
       - "3306" # only expose within the Docker network. Not mapping to host machine port
     env_file:
       - .env
     volumes:
-      - mariadb-data:/home/ikgonzal/data/mysql
+      - mariadb_data:/var/lib/mysql
     networks:
       - docker-network
 
@@ -22,16 +23,18 @@ services:
     container_name: wordpress
     build: ./requirements/wordpress
     environment:
-      WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_DB_USER: ${MYSQL_USER}
-      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
-      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ADMIN_USER: ${MYSQL_ADMIN_USER}
+      MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
+      MYSQL_STANDARD_USER: ${MYSQL_STANDARD_USER}
+      MYSQL_STANDARD_PASSWORD: ${MYSQL_STANDARD_PASSWORD}
     ports:
       - "8080" # only expose within the Docker network. Not mapping to host machine port
     depends_on:
       - mariadb
     volumes:
-      - wordpress-data:/home/ikgonzal/data/wordpress
+      - wordpress_data:/var/www/html/wordpress
     networks:
       - docker-network
 
@@ -42,12 +45,24 @@ services:
       - "443:443" # it is the only port exposed to the internet as it is mapped with port 443 of the host machine
     depends_on:
       - wordpress
+    volumes:
+      - wordpress_data:/var/www/html/wordpress
     networks:
       - docker-network
 
 volumes:
-  mariadb-data:
-  wordpress-data:
+  mariadb_data: 
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ikgonzal/data/mysql
+      o: bind
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ikgonzal/data/wordpress
+      o: bind
 
 networks:
   docker-network:

@@ -8,6 +8,10 @@ RUN apt-get update && \
 # Create the target directory
 RUN mkdir -p /var/www
 
+#Create the folder to enable php start
+
+RUN mkdir /run/php
+
 # Install WordPress
 RUN wget -O /tmp/wordpress.tar.gz https://wordpress.org/latest.tar.gz && \
     tar -xzvf /tmp/wordpress.tar.gz -C /var/www/ && \

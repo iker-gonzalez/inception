@@ -1,21 +1,40 @@
+# Define ANSI escape codes for colors
+YELLOW=\033[1;33m
+GREEN=\033[1;32m
+RED=\033[31m
+NC=\033[0m  # No Color
+
+DOCKER_COMPOSE=./srcs/docker-compose.yml
+
 all:
-	@ docker compose -f srcs/docker-compose.yml up --build
+	@echo "$(YELLOW)Building files for volumes ... $(NC)"
+	@sudo mkdir -p /home/ikgonzal/data/wordpress
+	@sudo mkdir -p /home/ikgonzal/data/mysql
+	@echo "$(YELLOW)Building containers ... $(NC)"
+	@ docker compose -f ${DOCKER_COMPOSE} up --build
 
-down:
-	@docker compose -f ./scrs/docker-compose.yml down
+list:	
+	@echo "$(YELOOW)Listing all containers ... $(NC)"
+	 docker ps -a
 
-re:
-	@docker compose -f scrs/docker-compose.yml up -d --build
+list_volumes:
+	@echo "$(YELLOW)Listing volumes ... $(NC)"
+	docker volume ls
 
-clean:
-	@docker stop $$(docker ps -qa);\
-	docker rm $$(docker ps -qa);\
-	docker rmi -f $$(docker images -qa);\
-	docker volume rm $$(docker volume ls -q);\
-	docker network rm $$(docker network ls -q);\
-	true
-
-clean-images:
-	@docker rmi -f $$(docker images -qa);\
+clean: 	
+	@echo "$(RED)Stopping containers ... $(NC)"
+	@docker-compose -f $(COMPOSE_FILE) down
+	@-docker stop `docker ps -qa`
+	@-docker rm `docker ps -qa`
+	@echo "$(RED)Deleting all images ... $(NC)"
+	@-docker rmi -f `docker images -qa`
+	@echo "$(RED)Deleting all volumes ... $(NC)"
+	@-docker volume rm `docker volume ls -q`
+	@echo "$(RED)Deleting all network ... $(NC)"
+	@-docker network rm `docker network ls -q`
+	@echo "$(RED)Deleting all data ... $(NC)"
+	@sudo rm -rf /home/llescure/data/wordpress
+	@sudo rm -rf /home/llescure/data/mysql
+	@echo "$(RED)Deleting all $(NC)"
 
 .PHONY: build all re down clean clean-images

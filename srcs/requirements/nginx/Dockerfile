@@ -4,9 +4,6 @@ FROM debian:buster
 # Install Nginx and OpenSSL
 RUN apt-get update && apt-get install -y nginx openssl
 
-# Create the target directory for volumes where website files are stored
-# RUN mkdir -p /home/ikgonzal/data/website
-
 # Generate a self-signed SSL certificate (for testing purposes)
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/server.key -out /etc/nginx/server.crt -subj "/C=ES/ST=Madrid/L=Madrid/O=42/OU=DevOps/CN=ikgonzal.42.fr"
 

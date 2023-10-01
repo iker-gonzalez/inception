@@ -14,7 +14,7 @@ services:
     env_file:
       - .env
     volumes:
-      - mariadb-data:/home/ikgonzal/data
+      - mariadb-data:/home/ikgonzal/data/mysql
     networks:
       - docker-network
 
@@ -31,7 +31,7 @@ services:
     depends_on:
       - mariadb
     volumes:
-      - wordpress-data:/home/ikgonzal/data
+      - wordpress-data:/home/ikgonzal/data/wordpress
     networks:
       - docker-network
 

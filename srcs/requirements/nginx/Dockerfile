@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y nginx openssl
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/server.key -out /etc/nginx/server.crt -subj "/C=ES/ST=Madrid/L=Madrid/O=42/OU=DevOps/CN=ikgonzal.42.fr"
 
 # Copy your Nginx configuration file (e.g., nginx.conf) into the container
-COPY conf/default.conf /etc/nginx/nginx.conf
+COPY conf/nginx.conf /etc/nginx/conf.d
 
 # Expose HTTPS port (443)
 EXPOSE 443

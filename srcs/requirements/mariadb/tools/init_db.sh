@@ -34,3 +34,7 @@ else
     # Debugging: Disable debugging output
     #set +x
 fi
+
+/etc/init.d/mysql stop
+
+exec "$@"

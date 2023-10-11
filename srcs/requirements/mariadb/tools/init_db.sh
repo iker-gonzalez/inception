@@ -35,6 +35,6 @@ else
     #set +x
 fi
 
-/etc/init.d/mysql stop
+#/etc/init.d/mysql stop
 
 exec "$@"

@@ -23,18 +23,23 @@ list_volumes:
 
 clean: 	
 	@echo "$(RED)Stopping containers ... $(NC)"
-	@docker-compose -f $(COMPOSE_FILE) down
-	@-docker stop `docker ps -qa`
-	@-docker rm `docker ps -qa`
+	@if docker ps -a | grep -q 'mariadb'; then docker stop mariadb; fi
+	@if docker ps -a | grep -q 'wordpress'; then docker stop wordpress; fi
+	@if docker ps -a | grep -q 'nginx'; then docker stop nginx; fi
+	@if docker ps -a | grep -q 'mariadb'; then docker rm mariadb; fi
+	@if docker ps -a | grep -q 'wordpress'; then docker rm wordpress; fi
+	@if docker ps -a | grep -q 'nginx'; then docker rm nginx; fi
 	@echo "$(RED)Deleting all images ... $(NC)"
-	@-docker rmi -f `docker images -qa`
+	@docker image prune -a
 	@echo "$(RED)Deleting all volumes ... $(NC)"
-	@-docker volume rm `docker volume ls -q`
+	@-docker volume ls -q | xargs -I {} docker volume rm {}
 	@echo "$(RED)Deleting all network ... $(NC)"
-	@-docker network rm `docker network ls -q`
+	@if docker network ls | grep -q srcs_docker-network; then \
+		docker network rm srcs_docker-network; \
+	fi
 	@echo "$(RED)Deleting all data ... $(NC)"
-	@sudo rm -rf /home/llescure/data/wordpress
-	@sudo rm -rf /home/llescure/data/mysql
+	@sudo rm -rf /home/ikgonzal/data/wordpress
+	@sudo rm -rf /home/ikgonzal/data/mysql
 	@echo "$(RED)Deleting all $(NC)"
 
 .PHONY: build all re down clean clean-images

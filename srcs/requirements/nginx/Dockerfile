@@ -5,7 +5,7 @@ FROM debian:buster
 RUN apt-get update && apt-get install -y nginx openssl
 
 # Generate a self-signed SSL certificate (for testing purposes)
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/server.key -out /etc/nginx/server.crt -subj "/C=ES/ST=Madrid/L=Madrid/O=42/OU=DevOps/CN=${DOMAIN_NAME}"
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/server.key -out /etc/nginx/server.crt -subj "/C=ES/ST=Madrid/L=Madrid/O=42/OU=DevOps/CN=ikgonzal.42.fr"
 
 # Copy your Nginx configuration file (e.g., nginx.conf) into the container
 COPY conf/nginx.conf /etc/nginx/conf.d

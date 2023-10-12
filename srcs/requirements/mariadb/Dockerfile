@@ -20,3 +20,4 @@ ENTRYPOINT ["/usr/local/bin/init_db.sh"]
 EXPOSE 3306 
 
 # Start MariaDB when the container launches
+CMD ["mysqld"]

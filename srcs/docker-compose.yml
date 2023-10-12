@@ -30,7 +30,7 @@ services:
       MYSQL_STANDARD_USER: ${MYSQL_STANDARD_USER}
       MYSQL_STANDARD_PASSWORD: ${MYSQL_STANDARD_PASSWORD}
     ports:
-      - "8080" # only expose within the Docker network. Not mapping to host machine port
+      - "9000" # only expose within the Docker network. Not mapping to host machine port
     depends_on:
       - mariadb
     volumes:

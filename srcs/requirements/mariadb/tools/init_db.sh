@@ -4,37 +4,32 @@
 /etc/init.d/mysql start
 
 # Wait for it to fully start
-# sleep 10
+sleep 5
 
-# Check if the database exists
-if [ -d "/var/lib/mysql/$MYSQL_DATABASE" ]; then
-    echo "Database already exists"
-else
-    # Debugging: Print the SQL queries being executed
-    set -x
+# Debugging: Print the SQL queries being executed
+set -x
 
-    # Create database
-    mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "CREATE DATABASE $MYSQL_DATABASE"
+# Create database
+mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "CREATE DATABASE $MYSQL_DATABASE"
 
-    # Create a non-standard administrator user
-    mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "CREATE USER '$MYSQL_ADMIN_USER'@'%' IDENTIFIED BY '$MYSQL_ADMIN_PASSWORD';"
+# Create a non-standard administrator user
+mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "CREATE USER '$MYSQL_ADMIN_USER'@'%' IDENTIFIED BY '$MYSQL_ADMIN_PASSWORD';"
 
-    # Grant administrative privileges
-    mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_ADMIN_USER'@'%';"
+# Grant administrative privileges
+mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_ADMIN_USER'@'%';"
 
-    # Create a regular user
-    mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "CREATE USER '$MYSQL_STANDARD_USER'@'%' IDENTIFIED BY '$MYSQL_STANDARD_PASSWORD';"
+# Create a regular user
+mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "CREATE USER '$MYSQL_STANDARD_USER'@'%' IDENTIFIED BY '$MYSQL_STANDARD_PASSWORD';"
 
-    # Grant privileges to the regular user
-    mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "GRANT ALL ON *.* TO '$MYSQL_STANDARD_USER'@'%';"
+# Grant privileges to the regular user
+mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "GRANT ALL ON $MYSQL_DATABASE.* TO '$MYSQL_STANDARD_USER'@'%';"
 
-    # Flush privileges
-    mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "FLUSH PRIVILEGES;"
+# Flush privileges
+mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "FLUSH PRIVILEGES;"
 
-    # Debugging: Disable debugging output
-    #set +x
-fi
+# Debugging: Disable debugging output
+set +x
 
-#/etc/init.d/mysql stop
+/etc/init.d/mysql stop
 
 exec "$@"

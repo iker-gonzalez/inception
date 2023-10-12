@@ -17,16 +17,17 @@ RUN apt-get update && apt-get -y install \
 # Create the /var/www/html directory
 RUN mkdir -p /var/www/html
 
-# Install WordPress
-RUN wget -O /tmp/wordpress.tar.gz https://wordpress.org/latest.tar.gz && \
-    tar -xzvf /tmp/wordpress.tar.gz -C /var/www/html/ && \
-    rm /tmp/wordpress.tar.gz
-
-# Update PHP-FPM config file
-COPY ./config/www.conf /etc/php/7.3/fpm/pool.d/
+#Copy the necessary tools to download wordpress
+COPY ./config/www.conf /var/www/html/
 
 # Create the folder to enable php start
 RUN mkdir /run/php
+
+#Launch script
+
+COPY ./tools/set_wordpress.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/set_wordpress.sh
+ENTRYPOINT ["set_wordpress.sh"]
 
 WORKDIR /var/www/html/
 

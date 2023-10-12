@@ -30,6 +30,6 @@ mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "FLUSH PRIVILEGES;"
 # Debugging: Disable debugging output
 set +x
 
-/etc/init.d/mysql stop
+#/etc/init.d/mysql stop
 
 exec "$@"

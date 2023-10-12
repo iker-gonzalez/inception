@@ -23,7 +23,7 @@ services:
     container_name: wordpress
     build: ./requirements/wordpress
     environment:
-      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      MYSQL_HOSTNAME: ${MYSQL_HOSTNAME}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ADMIN_USER: ${MYSQL_ADMIN_USER}
       MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
@@ -41,6 +41,8 @@ services:
   nginx:
     container_name: nginx
     build: ./requirements/nginx
+    environment:
+      DOMAIN_NAME: ${DOMAIN_NAME}
     ports:
       - "443:443" # it is the only port exposed to the internet as it is mapped with port 443 of the host machine
     depends_on:

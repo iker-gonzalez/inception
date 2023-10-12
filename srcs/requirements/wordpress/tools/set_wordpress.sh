@@ -9,12 +9,19 @@ rm -rf latest.tar.gz
 # Move the new file to the destination, overwriting any existing file
 mv -f ./www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
-#Inport env variables in the config file
-cd /var/www/html/wordpress
-sed -i "s/username_here/$MYSQL_STANDARD_USER/g" wp-config-sample.php
-sed -i "s/password_here/$MYSQL_STANDARD_PASSWORD/g" wp-config-sample.php
-sed -i "s/localhost/$WORDPRESS_DB_HOST/g" wp-config-sample.php
-sed -i "s/database_name_here/$MYSQL_DATABASE/g" wp-config-sample.php
-mv wp-config-sample.php wp-config.php
+# Import environment variables into wp-config.php
+#cd /var/www/html/wordpress
+#sed -i "s/username_here/$MYSQL_STANDARD_USER/g" wp-config-sample.php
+#sed -i "s/password_here/$MYSQL_STANDARD_PASSWORD/g" wp-config-sample.php
+#sed -i "s/localhost/$MYSQL_HOSTNAME/g" wp-config-sample.php
+#sed -i "s/database_name_here/$MYSQL_DATABASE/g" wp-config-sample.php
+
+# Add WordPress debugging options
+echo "define('WP_DEBUG', true);" >> wp-config-sample.php
+echo "define('WP_DEBUG_LOG', true);" >> wp-config-sample.php
+echo "define('WP_DEBUG_DISPLAY', false);" >> wp-config-sample.php
+
+# Rename wp-config-sample.php to wp-config.php
+#mv wp-config-sample.php wp-config.php
 
 exec "$@"

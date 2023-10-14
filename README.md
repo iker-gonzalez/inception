@@ -44,8 +44,6 @@ The system architecture for the "Inception" project is a comprehensive setup des
 
 - **TLS Encryption:** The NGINX container acts as the entry point into the infrastructure, serving via port 443. It provides TLSv1.2 or TLSv1.3 encryption, ensuring secure communication.
 
-- **Environment Variables:** The project employs environment variables, and a `.env` file is set up to store and manage these variables.
-
 This architecture provides a robust environment for system administration learning, emphasizing Docker-based virtualization and the orchestration of multiple services within a virtual machine.
 
 

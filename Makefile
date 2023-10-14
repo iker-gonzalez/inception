@@ -22,25 +22,15 @@ list_volumes:
 	docker volume ls
 
 clean: 	
-	@echo "$(RED)Stopping containers ... $(NC)"
-	@if docker ps -a | grep -q 'mariadb'; then docker stop mariadb; fi
-	@if docker ps -a | grep -q 'wordpress'; then docker stop wordpress; fi
-	@if docker ps -a | grep -q 'nginx'; then docker stop nginx; fi
-	@if docker ps -a | grep -q 'mariadb'; then docker rm mariadb; fi
-	@if docker ps -a | grep -q 'wordpress'; then docker rm wordpress; fi
-	@if docker ps -a | grep -q 'nginx'; then docker rm nginx; fi
-	@echo "$(RED)Deleting all images ... $(NC)"
-	@docker image prune -a
+	@echo "Shutting down containers..."
+	@docker compose -f srcs/docker-compose.yml down
 
 fclean: clean
-	@echo "$(RED)Deleting custom network ... $(NC)"
-	@if docker network ls | grep -q srcs_docker-network; then \
-		docker network rm srcs_docker-network; \
-	fi
-	@echo "$(RED)Deleting all volumes ... $(NC)"
-	@-docker volume ls -q | xargs -I {} docker volume rm {}
-	@echo "$(RED)Deleting all data ... $(NC)"
-	@sudo rm -rf /home/ikgonzal/data/wordpress
+	@echo "$(RED)Deleting all images ... $(NC)"
+	@docker image prune -a
+	@echo "$(RED)Deleting data from mariadb database ... $(NC)"
 	@sudo rm -rf /home/ikgonzal/data/mysql
+	@echo "$(RED)Deleting stored website files ... $(NC)"
+	@sudo rm -rf /home/ikgonzal/data/wordpress
 
 .PHONY: build all re down clean clean-images

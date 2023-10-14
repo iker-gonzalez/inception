@@ -31,15 +31,16 @@ clean:
 	@if docker ps -a | grep -q 'nginx'; then docker rm nginx; fi
 	@echo "$(RED)Deleting all images ... $(NC)"
 	@docker image prune -a
-	@echo "$(RED)Deleting all volumes ... $(NC)"
-	@-docker volume ls -q | xargs -I {} docker volume rm {}
-	@echo "$(RED)Deleting all network ... $(NC)"
+
+fclean: clean
+	@echo "$(RED)Deleting custom network ... $(NC)"
 	@if docker network ls | grep -q srcs_docker-network; then \
 		docker network rm srcs_docker-network; \
 	fi
+	@echo "$(RED)Deleting all volumes ... $(NC)"
+	@-docker volume ls -q | xargs -I {} docker volume rm {}
 	@echo "$(RED)Deleting all data ... $(NC)"
 	@sudo rm -rf /home/ikgonzal/data/wordpress
 	@sudo rm -rf /home/ikgonzal/data/mysql
-	@echo "$(RED)Deleting all $(NC)"
 
 .PHONY: build all re down clean clean-images

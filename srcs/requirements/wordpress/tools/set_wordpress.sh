@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -f ./wordpress/wp-config.php ]
+if [ -f wp-config.php ]
 then
 	echo "wordpress already downloaded"
 else
@@ -19,11 +19,6 @@ else
     sed -i "s/password_here/$MYSQL_STANDARD_PASSWORD/g" wp-config-sample.php
     sed -i "s/localhost/$MYSQL_HOSTNAME/g" wp-config-sample.php
     sed -i "s/database_name_here/$MYSQL_DATABASE/g" wp-config-sample.php
-
-    # Add WordPress debugging options
-    #echo "define('WP_DEBUG', true);" >> wp-config-sample.php
-    #echo "define('WP_DEBUG_LOG', true);" >> wp-config-sample.php
-    #echo "define('WP_DEBUG_DISPLAY', false);" >> wp-config-sample.php
 
     # Rename wp-config-sample.php to wp-config.php
     mv wp-config-sample.php wp-config.php

@@ -27,9 +27,11 @@ RUN mkdir /run/php
 
 COPY ./tools/set_wordpress.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/set_wordpress.sh
-ENTRYPOINT ["set_wordpress.sh"]
 
 WORKDIR /var/www/html/
+
+ENTRYPOINT ["/usr/local/bin/set_wordpress.sh"]
+
 
 # Expose port 9000 for PHP-FPM
 EXPOSE 9000

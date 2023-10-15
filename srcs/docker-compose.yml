@@ -25,6 +25,7 @@ services:
     build: ./requirements/wordpress
     image: wordpress
     environment:
+      DOMAIN_NAME: ${DOMAIN_NAME}
       MYSQL_HOSTNAME: ${MYSQL_HOSTNAME}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ADMIN_USER: ${MYSQL_ADMIN_USER}

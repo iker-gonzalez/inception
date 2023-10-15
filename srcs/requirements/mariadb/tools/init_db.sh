@@ -37,7 +37,7 @@ else
     mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "FLUSH PRIVILEGES;"
 
     # Debugging: Disable debugging output
-    #set +x
+    set +x
 
 fi
 

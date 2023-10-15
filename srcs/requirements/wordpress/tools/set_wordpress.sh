@@ -23,6 +23,11 @@ else
     # Rename wp-config-sample.php to wp-config.php
     mv wp-config-sample.php wp-config.php
 
+    # Install WordPress CLI and create users
+    wp core install --url=$DOMAIN_NAME --title=Inception --admin_user=$WP_ADMIN_USER --admin_password=WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL --allow-root
+    wp user create $WP_USER $WP_USER_EMAIL --user_pass=$WP_USER_PASSWORD --role=author
+
+
 fi
 
 exec "$@"

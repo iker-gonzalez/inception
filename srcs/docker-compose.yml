@@ -11,8 +11,6 @@ services:
       MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
       MYSQL_STANDARD_USER: ${MYSQL_STANDARD_USER}
       MYSQL_STANDARD_PASSWORD: ${MYSQL_STANDARD_PASSWORD}
-    ports:
-      - "3306" # only expose within the Docker network. Not mapping to host machine port
     env_file:
       - .env
     volumes:
@@ -32,8 +30,6 @@ services:
       MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
       MYSQL_STANDARD_USER: ${MYSQL_STANDARD_USER}
       MYSQL_STANDARD_PASSWORD: ${MYSQL_STANDARD_PASSWORD}
-    ports:
-      - "9000" # only expose within the Docker network. Not mapping to host machine port
     depends_on:
       - mariadb
     volumes:

@@ -3,6 +3,7 @@ FROM debian:buster
 
 # Install PHP, PHP-FPM, required PHP extensions, and php-mysql
 RUN apt-get update && apt-get -y install \
+    mariadb-client \
     curl \
     php \
     php-cgi \

@@ -14,8 +14,8 @@ set -x
 mysql_secure_installation <<_EOF_
 
 Y
-${MYSQL_ROOT_PASSWORD}
-${MYSQL_ROOT_PASSWORD}
+secret
+secret
 Y
 n
 Y

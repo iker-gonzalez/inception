@@ -15,11 +15,11 @@ sleep 5
 
 # Check if the database exists
 
-if [ -d "/var/lib/mysql/$MYSQL_DATABASE" ]
-then 
+# if [ -d "/var/lib/mysql/$MYSQL_DATABASE" ]
+# then 
 
-    echo "Database already exists"
-else
+#     echo "Database already exists"
+# else
 
     # Debugging: Print the SQL queries being executed
     set -x
@@ -45,7 +45,7 @@ else
     # Debugging: Disable debugging output
     set +x
 
-fi
+# fi
 
 /etc/init.d/mysql stop
 

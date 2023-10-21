@@ -18,11 +18,10 @@ clean:
 	@docker compose -f srcs/docker-compose.yml down
 
 fclean: clean
-	@echo "$(RED)Deleting Docker images ... $(NC)"
-	@docker rmi -f $(docker images -qa)
+	@echo "$(RED)Deleting all images ... $(NC)"
+	@docker image prune -af > /dev/null 2>&1
 	@echo "$(RED)Deleting Docker volumnes ... $(NC)"
-	@docker volume rm $(docker volume ls -q)
-	@echo "$(RED)Deleting Docker network ... $(NC)"
-	@docker network rm $(docker network ls -q) 2>/dev/null
+	@docker volume rm -f mariadb_data > /dev/null 2>&1
+	@docker volume rm -f wordpress_data > /dev/null 2>&1
 
-.PHONY: build all re down clean clean-images
+.PHONY: all clean flcean

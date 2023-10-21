@@ -55,12 +55,14 @@ services:
 volumes:
   mariadb_data: 
     driver: local
+    name: mariadb_data
     driver_opts:
       type: none
       device: /home/ikgonzal/data/mysql
       o: bind
   wordpress_data:
     driver: local
+    name: wordpress_data
     driver_opts:
       type: none
       device: /home/ikgonzal/data/wordpress
@@ -68,3 +70,4 @@ volumes:
 
 networks:
   docker-network:
+    name: docker-network

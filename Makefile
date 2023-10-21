@@ -15,7 +15,7 @@ all:
 
 connect:
 	@echo "$(YELLOW)Connecting to mariadb container ... $(NC)"
-	@docker exec -it mariadb
+	@docker exec -it mariadb bash
 
 clean: 	
 	@echo "Shutting down containers..."

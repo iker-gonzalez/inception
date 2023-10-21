@@ -22,8 +22,8 @@ RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 
 # Create the necessary user and group
-RUN adduser -S -D -H -u 1000 nginx \
-    && addgroup -S -g 1000 nginx
+RUN adduser --system --no-create-home --disabled-password --uid 1000 nginx \
+    && addgroup --system --gid 1000 nginx
 
 # Create the /var/www/html directory
 RUN mkdir -p /var/www/html

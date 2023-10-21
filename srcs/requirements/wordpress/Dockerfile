@@ -21,6 +21,8 @@ RUN php wp-cli.phar --allow-root
 RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 
+RUN	adduser -S nginx &&	addgroup -S nginx
+
 # Create the /var/www/html directory
 RUN mkdir -p /var/www/html
 

@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Set the password for the root user
+mysqladmin -u root password $MYSQL_ROOT_PASSWORD
+
+# Force MySQL root user to use a password
+sed -i '/^\[mysqld\]$/a skip-grant-tables' /etc/mysql/mysql.conf.d/mysqld.cnf
+
 mysql_install_db
 
 /etc/init.d/mysql start
@@ -7,12 +13,12 @@ mysql_install_db
 # Wait for it to fully start
 sleep 5
 
-#Check if the database exists
+# Check if the database exists
 
 if [ -d "/var/lib/mysql/$MYSQL_DATABASE" ]
 then 
 
-	echo "Database already exists"
+    echo "Database already exists"
 else
 
     # Debugging: Print the SQL queries being executed

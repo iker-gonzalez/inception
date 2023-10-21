@@ -11,16 +11,16 @@ set -x
 
 # Set root option so that connexion without root password is not possible
 
-# mysql_secure_installation <<_EOF_
+mysql_secure_installation <<_EOF_
 
-# Y
-# secret
-# secret
-# Y
-# n
-# Y
-# Y
-# _EOF_
+Y
+secret
+secret
+Y
+Y
+Y
+Y
+_EOF_
 
 # Create database, users, and privileges
 mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE"

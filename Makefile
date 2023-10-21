@@ -13,6 +13,10 @@ all:
 	@echo "$(YELLOW)Building containers ... $(NC)"
 	@ docker compose -f ${DOCKER_COMPOSE} up --build
 
+connect:
+	@echo "$(YELLOW)Connecting to mariadb container ... $(NC)"
+	@docker exec -it mariadb
+
 clean: 	
 	@echo "Shutting down containers..."
 	@docker compose -f srcs/docker-compose.yml down

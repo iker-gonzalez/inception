@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Start MySQL server
+/etc/init.d/mysql start
+
+# Wait for it to fully start
+sleep 5
+
 # Debugging: Print the SQL queries being executed
 set -x
 
@@ -9,11 +15,6 @@ mysqladmin -u root password "$MYSQL_ROOT_PASSWORD"
 # Modify the MySQL configuration file to enable password authentication
 sed -i '/^\[mysqld\]$/a skip-grant-tables=0' /etc/mysql/mariadb.cnf
 
-# Start MySQL server
-/etc/init.d/mysql start
-
-# Wait for it to fully start
-sleep 5
 
 # Create database, users, and privileges
 mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE"

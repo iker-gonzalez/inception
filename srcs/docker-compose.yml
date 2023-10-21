@@ -37,7 +37,7 @@ services:
     depends_on:
       - mariadb
     volumes:
-      - wordpress_data:/var/www/html/wordpress
+      - wordpress_data:/var/www/html
     networks:
       - docker-network
 
@@ -52,7 +52,7 @@ services:
     depends_on:
       - wordpress
     volumes:
-      - wordpress_data:/var/www/html/wordpress
+      - wordpress_data:/var/www/html
     networks:
       - docker-network
 

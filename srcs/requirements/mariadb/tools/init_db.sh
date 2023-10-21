@@ -7,14 +7,13 @@
 sleep 5
 
 # # Debugging: Print the SQL queries being executed
-# set -x
+set -x
 
 # # Set the password for the root user
-# mysqladmin -u root password "$MYSQL_ROOT_PASSWORD"
+mysqladmin -u root password "$MYSQL_ROOT_PASSWORD"
 
 # Modify the MySQL configuration file to enable password authentication
 sed -i '/^\[mysqld\]$/a skip-grant-tables=0' /etc/mysql/mariadb.cnf
-
 
 # Create database, users, and privileges
 mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE"

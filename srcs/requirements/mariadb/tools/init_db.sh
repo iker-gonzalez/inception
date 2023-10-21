@@ -25,22 +25,22 @@ else
     set -x
 
     # Create database
-    mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "CREATE DATABASE $MYSQL_DATABASE"
+    mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "CREATE DATABASE $MYSQL_DATABASE"
 
     # Create a non-standard administrator user
-    mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "CREATE USER '$MYSQL_ADMIN_USER'@'%' IDENTIFIED BY '$MYSQL_ADMIN_PASSWORD';"
+    mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "CREATE USER '$MYSQL_ADMIN_USER'@'%' IDENTIFIED BY '$MYSQL_ADMIN_PASSWORD';"
 
     # Grant administrative privileges
-    mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_ADMIN_USER'@'%';"
+    mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_ADMIN_USER'@'%';"
 
     # Create a regular user
-    mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "CREATE USER '$MYSQL_STANDARD_USER'@'%' IDENTIFIED BY '$MYSQL_STANDARD_PASSWORD';"
+    mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "CREATE USER '$MYSQL_STANDARD_USER'@'%' IDENTIFIED BY '$MYSQL_STANDARD_PASSWORD';"
 
     # Grant privileges to the regular user
-    mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "GRANT ALL ON $MYSQL_DATABASE.* TO '$MYSQL_STANDARD_USER'@'%';"
+    mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "GRANT ALL ON $MYSQL_DATABASE.* TO '$MYSQL_STANDARD_USER'@'%';"
 
     # Flush privileges
-    mysql -u root -p"$MYSQL_ADMIN_PASSWORD" -e "FLUSH PRIVILEGES;"
+    mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "FLUSH PRIVILEGES;"
 
     # Debugging: Disable debugging output
     set +x

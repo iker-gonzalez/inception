@@ -11,6 +11,12 @@ echo "WP_USER: $WP_USER"
 echo "WP_USER_PASSWORD: $WP_USER_PASSWORD"
 echo "WP_USER_EMAIL: $WP_USER_EMAIL"
 
+echo "Check MariaDB environment variables:"
+echo "MYSQL_HOSTNAME: $MYSQL_HOSTNAME"
+echo "MYSQL_DATABASE: $MYSQL_DATABASE"
+echo "MYSQL_STANDARD_USER: $MYSQL_STANDARD_USER"
+echo "MYSQL_STANDARD_PASSWORD: $MYSQL_STANDARD_PASSWORD"
+
 if [ -f wp-config.php ]
 then
 	echo "wordpress already downloaded"
@@ -26,12 +32,7 @@ else
     mv -f ./www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
     # Create wp-config.php file
-    cd /var/www/html/wordpress
-    sed -i "s/username_here/$MYSQL_STANDARD_USER/g" wp-config-sample.php
-    sed -i "s/password_here/$MYSQL_STANDARD_PASSWORD/g" wp-config-sample.php
-    sed -i "s/localhost/$MYSQL_HOSTNAME/g" wp-config-sample.php
-    sed -i "s/database_name_here/$MYSQL_DATABASE/g" wp-config-sample.php
-    mv wp-config-sample.php wp-config.php
+    wp config create --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_STANDARD_USER --dbpass=$MYSQL_STANDARD_PASSWORD --dbhost=$MYSQL_HOSTNAME --dbcharset="utf8" --dbcollate="utf8_general_ci" --allow-root
 
     # Install WordPress CLI and create users
     echo "    url=$DOMAIN_NAME/wordpress"

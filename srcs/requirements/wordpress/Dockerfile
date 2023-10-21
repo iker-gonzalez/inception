@@ -14,6 +14,12 @@ RUN apt-get update && apt-get -y install \
     php-mbstring \
     && rm -rf /var/lib/apt/lists/*
 
+# Install WP CLI
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN php wp-cli.phar --allow-root
+RUN chmod +x wp-cli.phar
+RUN mv wp-cli.phar /usr/local/bin/wp
+
 # Create the /var/www/html directory
 RUN mkdir -p /var/www/html
 
@@ -22,8 +28,6 @@ COPY ./config/www.conf /var/www/html/
 
 # Create the folder to enable php start
 RUN mkdir /run/php
-
-#Launch script
 
 COPY ./tools/set_wordpress.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/set_wordpress.sh

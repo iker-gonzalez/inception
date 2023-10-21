@@ -27,6 +27,7 @@ fclean: clean
 	@echo "$(RED)Deleting Docker volumnes ... $(NC)"
 	@docker volume rm -f mariadb_data > /dev/null 2>&1
 	@docker volume rm -f wordpress_data > /dev/null 2>&1
+	@sudo rm -rf /home/ikgonzal/data
 
 re: fclean all
 

@@ -17,7 +17,7 @@ Y
 secret
 secret
 Y
-Y
+n
 Y
 Y
 _EOF_

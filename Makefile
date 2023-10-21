@@ -28,4 +28,6 @@ fclean: clean
 	@docker volume rm -f mariadb_data > /dev/null 2>&1
 	@docker volume rm -f wordpress_data > /dev/null 2>&1
 
-.PHONY: all clean flcean
+re: fclean all
+
+.PHONY: all connect clean fclean re

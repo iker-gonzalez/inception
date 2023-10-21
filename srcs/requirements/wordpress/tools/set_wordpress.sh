@@ -32,7 +32,7 @@ else
     mv -f ./www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
     # Create wp-config.php file
-    wp config create --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_STANDARD_USER --dbpass=$MYSQL_STANDARD_PASSWORD --dbhost=$MYSQL_HOSTNAME --dbcharset="utf8" --dbcollate="utf8_general_ci" --allow-root
+    wp config create --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_STANDARD_USER --dbpass=$MYSQL_STANDARD_PASSWORD --dbhost=$MYSQL_HOSTNAME --dbcharset="utf8" --allow-root
 
     # Install WordPress CLI and create users
     wp core install --url=$DOMAIN_NAME --title=$WP_TITLE --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL --skip-email --allow-root

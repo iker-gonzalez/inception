@@ -6,11 +6,11 @@
 # Wait for it to fully start
 sleep 5
 
-# Debugging: Print the SQL queries being executed
-set -x
+# # Debugging: Print the SQL queries being executed
+# set -x
 
-# Set the password for the root user
-mysqladmin -u root password "$MYSQL_ROOT_PASSWORD"
+# # Set the password for the root user
+# mysqladmin -u root password "$MYSQL_ROOT_PASSWORD"
 
 # Modify the MySQL configuration file to enable password authentication
 sed -i '/^\[mysqld\]$/a skip-grant-tables=0' /etc/mysql/mariadb.cnf

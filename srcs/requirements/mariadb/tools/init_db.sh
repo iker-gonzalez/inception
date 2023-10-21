@@ -11,7 +11,7 @@ echo "MYSQL_STANDARD_PASSWORD: $MYSQL_STANDARD_PASSWORD"
 /etc/init.d/mysql start
 
 # Wait for it to fully start
-#sleep 5
+sleep 2
 
 # # Debugging: Print the SQL queries being executed
 set -x

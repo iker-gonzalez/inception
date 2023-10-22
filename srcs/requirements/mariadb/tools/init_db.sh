@@ -1,7 +1,6 @@
 #!/bin/bash
 
 echo "Check MariaDB environment variables:"
-echo "MYSQL_HOSTNAME: $MYSQL_HOSTNAME"
 echo "MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD"
 echo "MYSQL_DATABASE: $MYSQL_DATABASE"
 echo "MYSQL_STANDARD_USER: $MYSQL_STANDARD_USER"

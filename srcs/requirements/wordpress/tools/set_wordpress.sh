@@ -28,9 +28,6 @@ else
     echo "[i] Downloading Wordpress"
     wp core download --allow-root
 
-    # Move the new file to the destination, overwriting any existing file
-    #mv -f ./www.conf /etc/php/7.3/fpm/pool.d/www.conf
-
     # Wait for mariadb to fully initialize
     sleep 2
     

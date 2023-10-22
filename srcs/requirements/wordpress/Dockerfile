@@ -28,9 +28,6 @@ RUN adduser --system --no-create-home --disabled-password --uid 1000 nginx \
 # Create the /var/www/html directory
 RUN mkdir -p /var/www/html
 
-#Copy the necessary tools to download wordpress
-#COPY ./config/www.conf /var/www/html/
-
 # Copy the www.conf file to the container's working directory
 COPY ./config/www.conf /tmp/www.conf
 

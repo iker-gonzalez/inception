@@ -29,7 +29,13 @@ RUN adduser --system --no-create-home --disabled-password --uid 1000 nginx \
 RUN mkdir -p /var/www/html
 
 #Copy the necessary tools to download wordpress
-COPY ./config/www.conf /var/www/html/
+#COPY ./config/www.conf /var/www/html/
+
+# Copy the www.conf file to the container's working directory
+COPY ./config/www.conf /tmp/www.conf
+
+# Move the new file to the destination, overwriting any existing file
+RUN mv -f /tmp/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
 # Create the folder to enable php start
 RUN mkdir /run/php
@@ -40,7 +46,6 @@ RUN chmod +x /usr/local/bin/set_wordpress.sh
 WORKDIR /var/www/html/
 
 ENTRYPOINT ["/usr/local/bin/set_wordpress.sh"]
-
 
 # Expose port 9000 for PHP-FPM
 EXPOSE 9000

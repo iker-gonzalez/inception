@@ -78,9 +78,6 @@ To run this project, follow these steps:
 
 6. **Certificate Warning:**
    - You may encounter a self-signed certificate warning; please proceed by ignoring this warning.
-  
-7. **Setup WordPress:**
-   - Follow the initial setup steps for WordPress, and you'll be up and running with your website.
  
  ## 🔗 Resources
  

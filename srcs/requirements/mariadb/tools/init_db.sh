@@ -7,7 +7,7 @@ echo "MYSQL_STANDARD_USER: $MYSQL_STANDARD_USER"
 echo "MYSQL_STANDARD_PASSWORD: $MYSQL_STANDARD_PASSWORD"
 
 # Start MySQL server
-/etc/init.d/mysql start
+/etc/init.d/mariadb start
 
 # Wait for it to fully start
 sleep 2
@@ -19,6 +19,7 @@ set -x
 
 mysql_secure_installation <<_EOF_
 
+n
 Y
 secret
 secret
@@ -41,6 +42,6 @@ mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "FLUSH PRIVILEGES"
 set +x
 
 # Properly stop MySQL server
-/etc/init.d/mysql stop
+/etc/init.d/mariadb stop
 
 exec "$@"

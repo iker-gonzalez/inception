@@ -1,5 +1,5 @@
 # Use the 'debian:buster' base image
-FROM debian:buster
+FROM debian:bullseye
 
 # Install Nginx and OpenSSL
 RUN apt-get update && apt-get install -y nginx openssl

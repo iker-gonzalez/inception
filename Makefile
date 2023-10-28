@@ -11,7 +11,7 @@ all:
 	@sudo mkdir -p /home/ikgonzal/data/wordpress
 	@sudo mkdir -p /home/ikgonzal/data/mysql
 	@echo "$(YELLOW)Building containers ... $(NC)"
-	@ docker compose -f ${DOCKER_COMPOSE} up --build
+	@docker-compose -f ${DOCKER_COMPOSE} up --build -d
 
 connect:
 	@echo "$(YELLOW)Connecting to mariadb container ... $(NC)"
@@ -19,7 +19,7 @@ connect:
 
 clean: 	
 	@echo "Shutting down containers..."
-	@docker compose -f srcs/docker-compose.yml down
+	@docker-compose -f srcs/docker-compose.yml down
 
 fclean: clean
 	@echo "$(RED)Deleting all images ... $(NC)"

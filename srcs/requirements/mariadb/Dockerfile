@@ -1,5 +1,5 @@
 # Use the official Debian Buster image as the base
-FROM debian:buster
+FROM debian:bullseye
 
 # Install required packages
 RUN apt-get update && apt-get -y install mariadb-server mariadb-client \

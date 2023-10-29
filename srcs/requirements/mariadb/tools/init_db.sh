@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container_name> /// use this command to get mariadb container IP
+
 # Start MySQL server
 /etc/init.d/mariadb start
 

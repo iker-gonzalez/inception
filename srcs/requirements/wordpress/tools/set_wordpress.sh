@@ -1,22 +1,5 @@
 #!/bin/sh
 
-echo "Check Wordpress environment variables:"
-echo "DOMAIN_NAME: $DOMAIN_NAME"
-echo "MYSQL_HOSTNAME: $MYSQL_HOSTNAME"
-echo "WP_TITLE: $WP_TITLE"
-echo "WP_ADMIN_USER: $WP_ADMIN_USER"
-echo "WP_ADMIN_PASSWORD: $WP_ADMIN_PASSWORD"
-echo "WP_ADMIN_EMAIL: $WP_ADMIN_EMAIL"
-echo "WP_USER: $WP_USER"
-echo "WP_USER_PASSWORD: $WP_USER_PASSWORD"
-echo "WP_USER_EMAIL: $WP_USER_EMAIL"
-
-echo "Check MariaDB environment variables:"
-echo "MYSQL_HOSTNAME: $MYSQL_HOSTNAME"
-echo "MYSQL_DATABASE: $MYSQL_DATABASE"
-echo "MYSQL_STANDARD_USER: $MYSQL_STANDARD_USER"
-echo "MYSQL_STANDARD_PASSWORD: $MYSQL_STANDARD_PASSWORD"
-
 if [ -f wp-config.php ]
 then
 	echo "wordpress already downloaded"

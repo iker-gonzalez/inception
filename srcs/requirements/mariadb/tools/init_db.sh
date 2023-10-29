@@ -1,11 +1,5 @@
 #!/bin/bash
 
-echo "Check MariaDB environment variables:"
-echo "MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD"
-echo "MYSQL_DATABASE: $MYSQL_DATABASE"
-echo "MYSQL_STANDARD_USER: $MYSQL_STANDARD_USER"
-echo "MYSQL_STANDARD_PASSWORD: $MYSQL_STANDARD_PASSWORD"
-
 # Start MySQL server
 /etc/init.d/mariadb start
 
@@ -21,8 +15,8 @@ mysql_secure_installation <<_EOF_
 
 n
 Y
-secret
-secret
+$MYSQL_ROOT_PASSWORD
+$MYSQL_ROOT_PASSWORD
 Y
 n
 Y
